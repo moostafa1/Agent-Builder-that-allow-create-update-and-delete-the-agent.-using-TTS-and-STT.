@@ -1,0 +1,213 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f0f2f5;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-container {
+    display: flex;
+    width: 95%;
+    max-width: 1200px;
+    height: 90vh;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+/* SIDEBAR STYLES */
+.sidebar {
+    width: 300px;
+    background: #f8f9fa;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    padding: 20px;
+    color: #007bff;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.agent-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+/* Update the agent item to align the name and the edit button */
+.agent-item {
+    padding: 12px;
+    margin-bottom: 8px;
+    background: #e9ecef;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex; /* Added */
+    justify-content: space-between; /* Added */
+    align-items: center; /* Added */
+}
+
+.agent-item:hover, .agent-item.active {
+    background: #cce5ff;
+    border-left: 4px solid #007bff;
+}
+
+.agent-name {
+    flex: 1; /* Pushes the edit button to the right */
+}
+
+.create-agent-box {
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    background: white;
+}
+
+.create-agent-box input, .create-agent-box textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.create-agent-box textarea {
+    height: 80px;
+    resize: none;
+}
+
+/* MAIN CHAT AREA STYLES */
+.chat-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #007bff;
+    color: white;
+}
+
+.chat-header select {
+    padding: 6px;
+    border-radius: 4px;
+    margin: 0 10px;
+}
+
+.chat-window {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #f4f7f6;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.message {
+    max-width: 70%;
+    padding: 12px 16px;
+    border-radius: 15px;
+    line-height: 1.4;
+    position: relative;
+}
+
+.message.user {
+    background: #007bff;
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+}
+
+.message.assistant {
+    background: white;
+    color: #333;
+    border: 1px solid #ddd;
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+}
+
+.message audio {
+    margin-top: 10px;
+    height: 30px;
+    width: 200px;
+}
+
+.system-message {
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/* INPUT AREA STYLES */
+.input-area {
+    display: flex;
+    padding: 15px;
+    background: white;
+    border-top: 1px solid #ddd;
+    gap: 10px;
+}
+
+.input-area input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    outline: none;
+}
+
+/* BUTTONS */
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* The new Edit Button */
+.btn-edit {
+    background: #007bff;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+}
+
+.btn-blue { background: #007bff; }
+.btn-green { background: #28a745; }
+
+/* Updated Microphone Button (Green, Rectangular, Smooth edges) */
+#btn-record-voice { 
+    border-radius: 6px; 
+    width: auto; 
+    height: auto; 
+    padding: 10px 15px; 
+    font-size: 1.2rem; 
+}
+
+.recording { animation: pulse 1.5s infinite; background: #dc3545 !important; }
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}

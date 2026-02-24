@@ -1,0 +1,311 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7890-1234-56789abcdef0",
+		"name": "AI Agent Builder API",
+		"description": "Complete collection for testing the AI Agent backend (Agents, Sessions, and Chat).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Agents",
+			"item": [
+				{
+					"name": "Create Agent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.collectionVariables.set(\"agent_id\", jsonData.id);",
+									"    console.log(\"Saved agent_id: \" + jsonData.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Professional Pirate\",\n    \"prompt\": \"You are a helpful AI assistant that only speaks like an angry pirate. End every sentence with 'Arrr!'.\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/agents/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"agents",
+								""
+							]
+						}
+					}
+				},
+				{
+					"name": "Get All Agents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/agents/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"agents",
+								""
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Specific Agent",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/agents/{{agent_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"agents",
+								"{{agent_id}}"
+							]
+						}
+					}
+				},
+				{
+					"name": "Update Agent",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Friendly Pirate\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/agents/{{agent_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"agents",
+								"{{agent_id}}"
+							]
+						}
+					}
+				},
+				{
+					"name": "Delete Agent",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/agents/{{agent_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"agents",
+								"{{agent_id}}"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "2. Sessions",
+			"item": [
+				{
+					"name": "Create Session",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.collectionVariables.set(\"session_id\", jsonData.id);",
+									"    console.log(\"Saved session_id: \" + jsonData.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"agent_id\": \"{{agent_id}}\",\n    \"name\": \"My First Chat\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/sessions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sessions"
+							]
+						}
+					}
+				},
+				{
+					"name": "List Agent Sessions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/agents/{{agent_id}}/sessions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"agents",
+								"{{agent_id}}",
+								"sessions"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Session History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/sessions/{{session_id}}/messages",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sessions",
+								"{{session_id}}",
+								"messages"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "3. Chat & Voice",
+			"item": [
+				{
+					"name": "Send Text Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Hello! What is your name?\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/sessions/{{session_id}}/messages/text",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sessions",
+								"{{session_id}}",
+								"messages",
+								"text"
+							]
+						}
+					}
+				},
+				{
+					"name": "Send Voice Message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/sessions/{{session_id}}/messages/voice",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sessions",
+								"{{session_id}}",
+								"messages",
+								"voice"
+							]
+						},
+						"description": "To use this: Go to the Body tab, hover over the 'file' key, ensure the dropdown says 'File' instead of 'Text', and select a .wav or .webm file from your computer."
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000"
+		},
+		{
+			"key": "agent_id",
+			"value": ""
+		},
+		{
+			"key": "session_id",
+			"value": ""
+		}
+	]
+}

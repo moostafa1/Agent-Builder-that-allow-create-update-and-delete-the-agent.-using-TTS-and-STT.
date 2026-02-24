@@ -1,0 +1,15 @@
+services:
+  api:
+    build: .
+    container_name: ai_agent_backend
+    ports:
+      - "8050:8000"
+    env_file:
+      - .env  # Automatically pulls your API keys securely
+    volumes:
+      # This saves your database to your actual computer
+      - ./chatbot.db:/app/chatbot.db 
+      # This saves all audio files to your actual computer
+      - ./uploads:/app/uploads       
+    restart: unless-stopped
+

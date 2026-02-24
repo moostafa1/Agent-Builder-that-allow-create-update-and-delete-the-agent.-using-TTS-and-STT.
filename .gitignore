@@ -1,0 +1,17 @@
+# Secrets
+.env
+*.env
+
+# Database & Uploads (We want these mounted via volumes, not baked in)
+chatbot.db
+uploads/
+
+# Python Cache & Environments
+__pycache__/
+*.pyc
+venv/
+env/
+.venv/
+
+# Git
+.git/

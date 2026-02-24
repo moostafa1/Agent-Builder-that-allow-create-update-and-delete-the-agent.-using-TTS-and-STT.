@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Builder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <h2>Agents</h2>
+            
+            <div id="agent-list" class="agent-list">
+                </div>
+
+            <div class="create-agent-box">
+                <input type="text" id="new-agent-name" placeholder="New agent name">
+                <textarea id="new-agent-prompt" placeholder="New agent prompt (e.g., You are a helpful dental assistant.)"></textarea>
+                <button id="btn-create-agent" class="btn-green">Create Agent</button>
+            </div>
+        </aside>
+
+        <main class="chat-area">
+            <header class="chat-header">
+                <h2 id="current-agent-name" class="agent-title">Select an Agent</h2>
+                
+                <div class="session-controls">
+                    <label for="session-select">Chat Session:</label>
+                    <select id="session-select" disabled>
+                        <option value="">-- No sessions --</option>
+                    </select>
+                    <button id="btn-new-chat" class="btn-blue" disabled>New Chat</button>
+                </div>
+            </header>
+
+            <div id="chat-window" class="chat-window">
+                <div class="system-message">Select an agent and a session to start chatting.</div>
+            </div>
+
+            <div class="input-area">
+                <input type="text" id="message-input" placeholder="Type your message..." disabled>
+                <button id="btn-send-text" class="btn-blue" disabled>Send</button>
+                <button id="btn-record-voice" class="btn-green" disabled>🎤</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
